@@ -13,6 +13,7 @@ data class BookResultResponse (
 fun BookResultResponse.toBook(): Book {
     return Book(
         bookDetais[0].title,
-        bookDetais[0].author
+        bookDetais[0].author,
+        bookDetais[0].description
     )
 }

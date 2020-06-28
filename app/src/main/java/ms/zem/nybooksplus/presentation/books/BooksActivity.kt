@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_books.*
 import ms.zem.nybooksplus.R
+import ms.zem.nybooksplus.presentation.details.BookDetailsActivity
 
 class BooksActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,7 +25,9 @@ class BooksActivity : AppCompatActivity() {
                 with(recyclerMain){
                     layoutManager = LinearLayoutManager(this@BooksActivity, RecyclerView.VERTICAL, false)
                     setHasFixedSize(true)
-                    adapter = BooksAdapter(it)
+                    adapter = BooksAdapter(it){book ->
+                        startActivity(BookDetailsActivity.getStartIntent(this@BooksActivity, book))
+                    }
                     addItemDecoration(DividerItemDecoration(this@BooksActivity, DividerItemDecoration.VERTICAL))
                 }
             }

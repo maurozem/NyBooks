@@ -17,7 +17,6 @@ class BookViewModel : ViewModel() {
     val books: LiveData<List<Book>> = booksLiveData
 
     fun getBooks(){
-//        booksLiveData.value = getBooksMock()
         APIServices.service.getBooks().enqueue(object : Callback<BookBodyResponse>{
             override fun onResponse(
                 call: Call<BookBodyResponse>,
@@ -40,9 +39,4 @@ class BookViewModel : ViewModel() {
         })
     }
 
-    private fun getBooksMock() = listOf<Book>(
-            Book("Titulo 01", "Autor 01"),
-            Book("Titulo 02", "Autor 02"),
-            Book("Titulo 03", "Autor 03")
-    )
 }

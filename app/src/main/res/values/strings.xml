@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">NyBooksPlus</string>
 
-<!--    books acticity-->
+    <!--    books acticity-->
     <string name="books">Books</string>
+    <string name="titulo">Título</string>
+    <string name="autor">Autor</string>
+    <string name="descricao">Descrição</string>
 </resources>
