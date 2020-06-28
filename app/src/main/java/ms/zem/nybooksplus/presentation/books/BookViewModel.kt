@@ -3,7 +3,13 @@ package ms.zem.nybooksplus.presentation.books
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import ms.zem.nybooksplus.data.APIServices
 import ms.zem.nybooksplus.data.model.Book
+import ms.zem.nybooksplus.data.response.BookBodyResponse
+import ms.zem.nybooksplus.data.response.toBook
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class BookViewModel : ViewModel() {
 
@@ -11,7 +17,27 @@ class BookViewModel : ViewModel() {
     val books: LiveData<List<Book>> = booksLiveData
 
     fun getBooks(){
-        booksLiveData.value = getBooksMock()
+//        booksLiveData.value = getBooksMock()
+        APIServices.service.getBooks().enqueue(object : Callback<BookBodyResponse>{
+            override fun onResponse(
+                call: Call<BookBodyResponse>,
+                response: Response<BookBodyResponse>
+            ) {
+                if (response.isSuccessful){
+                    val mybooks : MutableList<Book> = mutableListOf()
+                    response.body()?.let {
+                        for (result in it.bookResults){
+                            mybooks.add(result.toBook())
+                        }
+                    }
+                    booksLiveData.value = mybooks
+                }
+            }
+
+            override fun onFailure(call: Call<BookBodyResponse>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+        })
     }
 
     private fun getBooksMock() = listOf<Book>(
