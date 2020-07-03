@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_books.recyclerMain
-import kotlinx.android.synthetic.main.toolbar.*
+import kotlinx.android.synthetic.main.toolbar.toolbar
 import ms.zem.nybooksplus.R
 import ms.zem.nybooksplus.presentation.base.BaseActivity
 import ms.zem.nybooksplus.presentation.details.BookDetailsActivity
@@ -17,7 +17,7 @@ class BooksActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_books)
 
-        setupToolbar(toolbarMain, R.string.books)
+        setupToolbar(toolbar, R.string.books)
 
         val viewModel: BookViewModel = ViewModelProvider(this).get(BookViewModel::class.java)
         viewModel.books.observe(this, Observer {

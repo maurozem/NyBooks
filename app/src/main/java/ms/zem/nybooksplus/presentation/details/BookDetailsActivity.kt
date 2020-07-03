@@ -6,19 +6,21 @@ import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_book_details.tvDescricao
 import kotlinx.android.synthetic.main.activity_book_details.tvTitulo
 import kotlinx.android.synthetic.main.activity_book_details.tvAutor
-import kotlinx.android.synthetic.main.toolbar.*
+import kotlinx.android.synthetic.main.toolbar.toolbar
 import ms.zem.nybooksplus.R
 import ms.zem.nybooksplus.data.model.Book
 import ms.zem.nybooksplus.presentation.base.BaseActivity
 
 class BookDetailsActivity : BaseActivity() {
 
-    lateinit var book: Book
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_book_details)
 
-        setupToolbar(toolbarMain, R.string.book_detail)
+        toolbar?.let {
+            setupToolbar(it, R.string.book_detail)
+        } ?: setupToolbar(findViewById(R.id.toolbar), R.string.book_detail)
+
 
         val book = intent.getSerializableExtra(BOOK) as Book
         tvTitulo.text = book.title

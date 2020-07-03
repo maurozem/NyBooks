@@ -8,7 +8,7 @@
     tools:context=".presentation.details.BookDetailsActivity">
 
     <include layout="@layout/toolbar"
-        android:id="@+id/include_toolbar"
+        android:id="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
