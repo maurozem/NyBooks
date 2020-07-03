@@ -6,11 +6,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_books.recyclerMain
+import kotlinx.android.synthetic.main.activity_books.*
 import kotlinx.android.synthetic.main.toolbar.toolbar
 import ms.zem.nybooksplus.R
 import ms.zem.nybooksplus.presentation.base.BaseActivity
 import ms.zem.nybooksplus.presentation.details.BookDetailsActivity
+import kotlin.time.seconds
 
 class BooksActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,6 +22,15 @@ class BooksActivity : BaseActivity() {
 
         val viewModel: BookViewModel = ViewModelProvider(this).get(BookViewModel::class.java)
 
+
+        viewModel.flipperLiveData.observe(this, Observer {
+            it?.let { pair ->
+                flipper.displayedChild = pair.first
+                pair.second?.let { idTexto ->
+                    textError.text = getString(idTexto)
+                }
+            }
+        })
         viewModel.books.observe(this, Observer {
             it?.let {
                 val dividerItemDetailsActivity = DividerItemDecoration(this@BooksActivity, DividerItemDecoration.VERTICAL)
@@ -41,6 +51,7 @@ class BooksActivity : BaseActivity() {
         })
         viewModel.getBooks()
     }
+
 
 
 

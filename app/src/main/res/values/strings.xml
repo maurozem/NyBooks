@@ -7,4 +7,8 @@
     <string name="autor">Autor</string>
     <string name="descricao">Descrição</string>
     <string name="book_detail">Book Details</string>
+
+    <string name="error401">Não autorizado</string>
+    <string name="error400">Erro não tratado</string>
+    <string name="error500">Erro catastrófico</string>
 </resources>
