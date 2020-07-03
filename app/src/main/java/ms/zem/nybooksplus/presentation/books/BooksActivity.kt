@@ -20,6 +20,7 @@ class BooksActivity : BaseActivity() {
         setupToolbar(toolbar, R.string.books)
 
         val viewModel: BookViewModel = ViewModelProvider(this).get(BookViewModel::class.java)
+
         viewModel.books.observe(this, Observer {
             it?.let {
                 val dividerItemDetailsActivity = DividerItemDecoration(this@BooksActivity, DividerItemDecoration.VERTICAL)

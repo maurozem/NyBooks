@@ -18,7 +18,7 @@ class BookDetailsActivity : BaseActivity() {
         setContentView(R.layout.activity_book_details)
 
         toolbar?.let {
-            setupToolbar(it, R.string.book_detail)
+            setupToolbar(it, R.string.book_detail, true)
         } ?: setupToolbar(findViewById(R.id.toolbar), R.string.book_detail)
 
 
