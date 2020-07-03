@@ -6,4 +6,5 @@
     <string name="titulo">Título</string>
     <string name="autor">Autor</string>
     <string name="descricao">Descrição</string>
+    <string name="book_detail">Book Details</string>
 </resources>

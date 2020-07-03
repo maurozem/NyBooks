@@ -2,18 +2,23 @@ package ms.zem.nybooksplus.presentation.details
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_book_details.*
+import kotlinx.android.synthetic.main.activity_book_details.tvDescricao
+import kotlinx.android.synthetic.main.activity_book_details.tvTitulo
+import kotlinx.android.synthetic.main.activity_book_details.tvAutor
+import kotlinx.android.synthetic.main.toolbar.*
 import ms.zem.nybooksplus.R
 import ms.zem.nybooksplus.data.model.Book
+import ms.zem.nybooksplus.presentation.base.BaseActivity
 
-class BookDetailsActivity : AppCompatActivity() {
+class BookDetailsActivity : BaseActivity() {
 
     lateinit var book: Book
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_book_details)
+
+        setupToolbar(toolbarMain, R.string.book_detail)
 
         val book = intent.getSerializableExtra(BOOK) as Book
         tvTitulo.text = book.title
