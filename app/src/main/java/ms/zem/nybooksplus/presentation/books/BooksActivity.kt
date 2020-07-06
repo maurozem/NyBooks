@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_books.*
 import kotlinx.android.synthetic.main.toolbar.toolbar
 import ms.zem.nybooksplus.R
+import ms.zem.nybooksplus.data.repository.BooksApiDataSource
 import ms.zem.nybooksplus.presentation.base.BaseActivity
 import ms.zem.nybooksplus.presentation.details.BookDetailsActivity
 import kotlin.time.seconds
@@ -20,7 +21,10 @@ class BooksActivity : BaseActivity() {
 
         setupToolbar(toolbar, R.string.books)
 
-        val viewModel: BookViewModel = ViewModelProvider(this).get(BookViewModel::class.java)
+        val viewModel: BookViewModel = BookViewModel.ViewModelFactory(BooksApiDataSource())
+            .create(BookViewModel::class.java)
+        // criação modo padrão
+        // val viewModel: BookViewModel = ViewModelProvider(this).get(BookViewModel::class.java)
 
 
         viewModel.flipperLiveData.observe(this, Observer {
